@@ -1,11 +1,11 @@
-# 🍔 Domicilios Express — Simulador de Consola en C
+# Domicilios Express — Simulador de Consola en C
 
 Aplicación de consola que simula un flujo básico de pedidos a domicilio, desarrollada en C puro.  
 Aplica **condicionales** (`if/else`, `switch`) y **ciclos** (`while`, `do…while`, `for`).
 
 ---
 
-## 📋 Funcionalidades
+## Funcionalidades
 
 | Opción | Descripción |
 |--------|-------------|
@@ -30,7 +30,7 @@ Total = Subtotal + IVA (19%) + Costo domicilio ($5 000)
 
 ---
 
-## 🏗️ Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 domicilios/
@@ -40,7 +40,7 @@ domicilios/
 
 ---
 
-## ⚙️ Compilación y ejecución
+##  Compilación y ejecución
 
 ### Linux / macOS
 ```bash
@@ -81,7 +81,5 @@ typedef struct { Producto producto; int cantidad; }         ItemCarrito;
 | `if / else` | Validación de ID, carrito vacío, confirmación |
 
 ---
-
-## 👤 Autor
 
 Proyecto académico — Programación en C  
