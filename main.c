@@ -1,20 +1,20 @@
 /*
- * ============================================================
- *  Simulador de Domicilios - Aplicación de Consola en C
- * ============================================================
+ * ===========================
+ *  Simulador de Domicilios
+ * ===========================
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-/* ── Constantes ── */
+// Definicion de los valores constantes
 #define NUM_PRODUCTOS  6
 #define MAX_CARRITO    20
 #define COSTO_DOMICILIO 5000.0
 #define IVA             0.19
 
-/* ── Estructuras ── */
+//
 typedef struct {
     int    id;
     char   nombre[50];
@@ -26,7 +26,7 @@ typedef struct {
     int      cantidad;
 } ItemCarrito;
 
-/* ── Catálogo global ── */
+// Catalogo de productos disponibles
 Producto catalogo[NUM_PRODUCTOS] = {
     {1, "Hamburguesa Clásica",   18500.0},
     {2, "Pizza Personal",        22000.0},
@@ -36,14 +36,11 @@ Producto catalogo[NUM_PRODUCTOS] = {
     {6, "Combo Papas + Bebida",  12000.0}
 };
 
-/* ── Carrito global ── */
+// Cracion de carrito de compra
 ItemCarrito carrito[MAX_CARRITO];
 int numItems = 0;
 
-/* ══════════════════════════════════════════════
-   Funciones auxiliares
-══════════════════════════════════════════════ */
-
+//Definicion de la funciones adicionales o auxiliares (limpiar pantalla, pausar, imprimir y encabezados)
 void limpiarPantalla() {
 #ifdef _WIN32
     system("cls");
@@ -132,7 +129,7 @@ void agregarProducto() {
 
     Producto *p = buscarProducto(id);
     if (p == NULL) {
-        printf("\n  ❌  Producto con ID %d no encontrado.\n", id);
+        printf("\n  Producto con ID %d no encontrado.\n", id);
         pausar();
         return;
     }
@@ -144,12 +141,12 @@ void agregarProducto() {
         while (getchar() != '\n');
 
         if (cantidad <= 0)
-            printf("  ⚠️   La cantidad debe ser mayor a 0. Intenta de nuevo.\n");
+            printf(" La cantidad debe ser mayor a 0. Intenta de nuevo.\n");
 
     } while (cantidad <= 0);
 
     if (numItems >= MAX_CARRITO) {
-        printf("\n  ❌  El carrito está lleno (máximo %d ítems).\n", MAX_CARRITO);
+        printf("\n  El carrito está lleno (máximo %d ítems).\n", MAX_CARRITO);
         pausar();
         return;
     }
@@ -158,13 +155,13 @@ void agregarProducto() {
     int idx = buscarEnCarrito(id);
     if (idx >= 0) {
         carrito[idx].cantidad += cantidad;
-        printf("\n  ✅  Cantidad actualizada: %s x%d\n",
+        printf("\n Cantidad actualizada: %s x%d\n",
                p->nombre, carrito[idx].cantidad);
     } else {
         carrito[numItems].producto  = *p;
         carrito[numItems].cantidad  = cantidad;
         numItems++;
-        printf("\n  ✅  Agregado: %s x%d\n", p->nombre, cantidad);
+        printf("\n  Agregado: %s x%d\n", p->nombre, cantidad);
     }
 
     pausar();
@@ -223,7 +220,7 @@ void confirmarPedido() {
     encabezado("CONFIRMAR PEDIDO");
 
     if (numItems == 0) {
-        printf("\n  ❌  No hay productos en el carrito.\n");
+        printf("\n  No hay productos en el carrito.\n");
         pausar();
         return;
     }
@@ -250,8 +247,8 @@ void confirmarPedido() {
     if (confirm == 's' || confirm == 'S') {
         printf("\n");
         imprimirLinea('*', 50);
-        printf("  🎉  ¡Pedido confirmado! En camino...\n");
-        printf("  📦  Tiempo estimado: 30-45 minutos\n");
+        printf("  ¡Pedido confirmado! En camino...\n");
+        printf("  Tiempo estimado: 30-45 minutos\n");
         imprimirLinea('*', 50);
 
         /* Vaciar carrito */
@@ -309,10 +306,10 @@ int main(void) {
                 break;
             case 0:
                 encabezado("HASTA PRONTO");
-                printf("\n  ¡Gracias por usar Domicilios Express! 👋\n\n");
+                printf("\n  ¡Gracias por usar Domicilios Express! \n\n");
                 return EXIT_SUCCESS;
             default:
-                printf("\n  ⚠️   Opción inválida. Elige entre 0 y 4.\n");
+                printf("\n Opción inválida. Elige entre 0 y 4.\n");
                 pausar();
         }
     }
