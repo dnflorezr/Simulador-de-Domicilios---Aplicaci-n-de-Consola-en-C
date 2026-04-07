@@ -1,8 +1,4 @@
-/*
- * ===========================
- *  Simulador de Domicilios
- * ===========================
- */
+//Simulador de Domilios 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,11 +24,11 @@ typedef struct {
 
 // Catalogo de productos disponibles
 Producto catalogo[NUM_PRODUCTOS] = {
-    {1, "Hamburguesa Clásica",   18500.0},
+    {1, "Hamburguesa Clasica",   18500.0},
     {2, "Pizza Personal",        22000.0},
     {3, "Wrap de Pollo",         15000.0},
     {4, "Perro Caliente",        10500.0},
-    {5, "Ensalada César",        13000.0},
+    {5, "Ensalada Cesar",        13000.0},
     {6, "Combo Papas + Bebida",  12000.0}
 };
 
@@ -63,13 +59,13 @@ void imprimirLinea(char c, int n) {
 void encabezado(const char *titulo) {
     limpiarPantalla();
     imprimirLinea('=', 50);
-    printf("  🍔  %s\n", titulo);
+    printf("  %s\n", titulo);
     imprimirLinea('=', 50);
 }
 
-/* ══════════════════════════════════════════════
-   1. Ver menú de productos
-══════════════════════════════════════════════ */
+
+  // Ver menú de productos
+
 void verMenuProductos() {
     encabezado("MENU DE PRODUCTOS");
     printf("\n  %-4s  %-25s  %s\n", "ID", "Producto", "Precio");
@@ -108,7 +104,7 @@ int buscarEnCarrito(int id) {
 void agregarProducto() {
     encabezado("AGREGAR AL CARRITO");
 
-    /* Mostrar catálogo compacto */
+    //Mostrar catálogo compacto
     printf("\n  %-4s  %-25s  %s\n", "ID", "Producto", "Precio");
     imprimirLinea('-', 50);
     for (int i = 0; i < NUM_PRODUCTOS; i++) {
@@ -134,7 +130,7 @@ void agregarProducto() {
         return;
     }
 
-    /* Validar cantidad > 0 con do…while */
+    //Validar cantidad > 0 con do…while 
     do {
         printf("  Cantidad a agregar: ");
         if (scanf("%d", &cantidad) != 1) { cantidad = 0; }
@@ -151,7 +147,7 @@ void agregarProducto() {
         return;
     }
 
-    /* Si ya existe en el carrito, sumar cantidad */
+    // Si ya existe en el carrito, sumar cantidad
     int idx = buscarEnCarrito(id);
     if (idx >= 0) {
         carrito[idx].cantidad += cantidad;
@@ -167,9 +163,8 @@ void agregarProducto() {
     pausar();
 }
 
-/* ══════════════════════════════════════════════
-   3. Ver carrito y total
-══════════════════════════════════════════════ */
+//Ver carrito y total
+
 double calcularSubtotal() {
     double subtotal = 0.0;
     for (int i = 0; i < numItems; i++)
@@ -213,9 +208,7 @@ void verCarrito() {
     pausar();
 }
 
-/* ══════════════════════════════════════════════
-   4. Confirmar pedido
-══════════════════════════════════════════════ */
+//Confirmar pedido
 void confirmarPedido() {
     encabezado("CONFIRMAR PEDIDO");
 
@@ -225,7 +218,6 @@ void confirmarPedido() {
         return;
     }
 
-    /* Resumen */
     printf("\n  Resumen de tu pedido:\n\n");
     for (int i = 0; i < numItems; i++) {
         printf("    • %-25s x%d\n",
@@ -250,8 +242,7 @@ void confirmarPedido() {
         printf("  ¡Pedido confirmado! En camino...\n");
         printf("  Tiempo estimado: 30-45 minutos\n");
         imprimirLinea('*', 50);
-
-        /* Vaciar carrito */
+    
         numItems = 0;
         memset(carrito, 0, sizeof(carrito));
     } else {
@@ -261,13 +252,11 @@ void confirmarPedido() {
     pausar();
 }
 
-/* ══════════════════════════════════════════════
-   Menú principal
-══════════════════════════════════════════════ */
+//Menu Principal App
 void mostrarMenu() {
     encabezado("DOMICILIOS EXPRESS");
     printf("\n");
-    printf("  [1]  Ver menú de productos\n");
+    printf("  [1]  Ver menu de productos\n");
     printf("  [2]  Agregar producto al carrito\n");
     printf("  [3]  Ver carrito y total\n");
     printf("  [4]  Confirmar pedido\n");
@@ -280,7 +269,7 @@ void mostrarMenu() {
 int main(void) {
     int opcion;
 
-    /* Bucle principal con while */
+   
     while (1) {
         mostrarMenu();
 
@@ -290,7 +279,6 @@ int main(void) {
         }
         while (getchar() != '\n');
 
-        /* switch para despachar opciones */
         switch (opcion) {
             case 1:
                 verMenuProductos();
@@ -309,8 +297,9 @@ int main(void) {
                 printf("\n  ¡Gracias por usar Domicilios Express! \n\n");
                 return EXIT_SUCCESS;
             default:
-                printf("\n Opción inválida. Elige entre 0 y 4.\n");
+                printf("\n Opción invalida. Elige entre 0 y 4.\n");
                 pausar();
         }
     }
 }
+
